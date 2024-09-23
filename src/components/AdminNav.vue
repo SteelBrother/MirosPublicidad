@@ -47,7 +47,7 @@
                     <a href="#" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Settings</a>
                   </MenuItem>
                   <MenuItem v-slot="{ active }">
-                <router-link to="/" :class="[active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700']">Sign out</router-link>
+                    <button @click.prevent="handleLogout" :class="[active ? 'bg-gray-100' : '', 'block w-full text-left px-4 py-2 text-sm text-gray-700']">Salir</button>
                 </MenuItem>
                 </MenuItems>
               </transition>
@@ -67,10 +67,16 @@
   <script setup>
   import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
   import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+  import { useAuthStore } from '@/stores/auth'
+  const auth = useAuthStore()
   
   const navigation = [
   { name: 'Dashboard', to: '/', current: true },
   { name: 'Productos', to: '/admin/productos', current: false },
   { name: 'Configuracion', to: '/admin/configuracion', current: false },
 ]
+
+const handleLogout = () => {
+  auth.logout() // Llama a tu método de cierre de sesión
+}
   </script>
