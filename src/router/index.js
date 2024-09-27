@@ -5,6 +5,7 @@ import AdminLayout from '@/views/admin/AdminLayout.vue'
 import { useFirebaseAuth } from 'vuefire'
 import { onAuthStateChanged } from 'firebase/auth'
 import LoginView from '@/views/LoginView.vue'
+import ProductView from '@/views/ProductView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: ProductView
     },
     {
       path: '/admin',
@@ -39,6 +45,11 @@ const router = createRouter({
           path: 'configuracion',
           name: 'config',
           component: () => import('../views/admin/AdminConfigView.vue')
+        },
+        {
+          path: 'productos/editar/:id',
+          name: 'edit-product',
+          component: () => import('../views/admin/EditProductView.vue')
         }
       ]
     }

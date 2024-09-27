@@ -1,51 +1,69 @@
 <script setup>
-import { reactive } from 'vue';
-import { useRouter } from 'vue-router';
+import { watch, reactive, computed } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { doc } from 'firebase/firestore';
+import { useFirestore, useDocument } from 'vuefire';
 import Link from '@/components/Link.vue';
+import { useProductsStore } from '@/stores/products';
 import useImage from '@/composables/useImage';
-import { useProductsStore } from '../../stores/products';
 
-const { url, onFileChange, isImageUploaded } = useImage();
-const products = useProductsStore();
+// Initialize router, route, Firestore, and document reference
 const router = useRouter();
+const route = useRoute();
+const db = useFirestore();
+const docRef = doc(db, 'products', route.params.id);
+const product = useDocument(docRef);
+
+// Image upload logic
+const { onFileChange, url, isImageUploaded } = useImage();
+const products = useProductsStore();
 
 const formData = reactive({
-  name: '',
-  description: '',
-  technicalSheet: '',
-  price: '',
-  category: '',
-  image: ''
+    name: '',
+    category: '',
+    price: '',
+    availability: '',
+    image: ''
 });
 
-// Función para eliminar la imagen
+// Function to remove the uploaded image
 const removeImage = () => {
-  formData.image = ''; // Reiniciar la propiedad de la imagen
-  url.value = ''; // Reiniciar la URL
+    formData.image = '';
+    url.value = '';
 };
 
-const submitHandler = async data => {
+// Watch for changes in the product
+watch(product, (newProduct) => {
+    if (!newProduct) {
+        router.push({ name: 'products' });
+    } else {
+        Object.assign(formData, newProduct);
+        url.value = newProduct.image || ''; // Ensure url is assigned safely
+    }
+});
 
-  const { image, ...values } = data;
-  try {
-    await products.createProduct({
-      ...values,
-      image: url.value
-    });
-    router.push({ name: 'products' });
-  } catch (error) {
-    console.log(error);
-  }
-};
+const imageRequiredError = computed(() => !formData.image && !isImageUploaded);
+
+
+    const submitHandler = async data => {
+        try {
+            await products.updateProduct(docRef, {...data, url})
+            router.push({name: 'products'})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 </script>
+
 
 <template>
   <div>
     <Link to="products">Volver</Link>
-    <h1 class="text-4xl font-black my-10">Nuevo Producto</h1>
+    <h1 class="text-4xl font-black my-10">Editar Producto</h1>
 
     <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 class="text-lg font-semibold leading-7 text-gray-900 mb-6">Registrar Producto</h2>
+      <h2 class="text-lg font-semibold leading-7 text-gray-900 mb-6">Edita el producto</h2>
 
       <form @submit.prevent="submitHandler(formData)" class="space-y-6 border border-gray-300 rounded-md p-6">
                       <!-- Input para Cargar Múltiples Fotos -->
@@ -78,7 +96,7 @@ Eliminar Imagen</button>
                       <p class="pl-1">o arrastra los archivos aquí</p>
                   </div>
                   <p class="mt-2 text-xs text-gray-500">Hasta 5 imágenes</p>
-                  <p v-if="!formData.image && imageRequiredError" class="text-red-500 text-sm">La Imagen del Producto es obligatoria</p>
+                  <p v-if="imageRequiredError" class="text-red-500 text-sm">La Imagen del Producto es obligatoria</p>
               </template>
           </div>
       </div>
