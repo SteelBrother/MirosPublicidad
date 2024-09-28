@@ -16,143 +16,76 @@
   import { RouterLink } from 'vue-router'
   import { useAuthStore } from '@/stores/auth'
   import { ref } from 'vue'
-  import {
-    Dialog,
-    DialogPanel,
-    Popover,
-    PopoverButton,
-    PopoverGroup,
-    PopoverPanel,
-    Tab,
-    TabGroup,
-    TabList,
-    TabPanel,
-    TabPanels,
-    TransitionChild,
-    TransitionRoot,
-  } from '@headlessui/vue'
+  import { Dialog, DialogPanel, Popover, PopoverButton, PopoverGroup, PopoverPanel, Tab, TabGroup, TabList, TabPanel, TabPanels, TransitionChild, TransitionRoot} from '@headlessui/vue'
   import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/vue/24/outline'
   const auth = useAuthStore()
   const navigation = {
-    categories: [
-      {
-        id: 'women',
-        name: 'Women',
-        featured: [
-          {
-            name: 'New Arrivals',
-            href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-01.jpg',
-            imageAlt: 'Models sitting back to back, wearing Basic Tee in black and bone.',
-          },
-          {
-            name: 'Basic Tees',
-            href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/mega-menu-category-02.jpg',
-            imageAlt: 'Close up of Basic Tee fall bundle with off-white, ochre, olive, and black tees.',
-          },
-        ],
-        sections: [
-          {
-            id: 'clothing',
-            name: 'Clothing',
-            items: [
-              { name: 'Tops', href: '#' },
-              { name: 'Dresses', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Denim', href: '#' },
-              { name: 'Sweaters', href: '#' },
-              { name: 'T-Shirts', href: '#' },
-              { name: 'Jackets', href: '#' },
-              { name: 'Activewear', href: '#' },
-              { name: 'Browse All', href: '#' },
-            ],
-          },
-          {
-            id: 'accessories',
-            name: 'Accessories',
-            items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' },
-            ],
-          },
-          {
-            id: 'brands',
-            name: 'Brands',
-            items: [
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Significant Other', href: '#' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'men',
-        name: 'Men',
-        featured: [
-          {
-            name: 'New Arrivals',
-            href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/product-page-04-detail-product-shot-01.jpg',
-            imageAlt: 'Drawstring top with elastic loop closure and textured interior padding.',
-          },
-          {
-            name: 'Artwork Tees',
-            href: '#',
-            imageSrc: 'https://tailwindui.com/img/ecommerce-images/category-page-02-image-card-06.jpg',
-            imageAlt:
-              'Three shirts in gray, white, and blue arranged on table with same line drawing of hands and shapes overlapping on front of shirt.',
-          },
-        ],
-        sections: [
-          {
-            id: 'clothing',
-            name: 'Clothing',
-            items: [
-              { name: 'Tops', href: '#' },
-              { name: 'Pants', href: '#' },
-              { name: 'Sweaters', href: '#' },
-              { name: 'T-Shirts', href: '#' },
-              { name: 'Jackets', href: '#' },
-              { name: 'Activewear', href: '#' },
-              { name: 'Browse All', href: '#' },
-            ],
-          },
-          {
-            id: 'accessories',
-            name: 'Accessories',
-            items: [
-              { name: 'Watches', href: '#' },
-              { name: 'Wallets', href: '#' },
-              { name: 'Bags', href: '#' },
-              { name: 'Sunglasses', href: '#' },
-              { name: 'Hats', href: '#' },
-              { name: 'Belts', href: '#' },
-            ],
-          },
-          {
-            id: 'brands',
-            name: 'Brands',
-            items: [
-              { name: 'Re-Arranged', href: '#' },
-              { name: 'Counterfeit', href: '#' },
-              { name: 'Full Nelson', href: '#' },
-              { name: 'My Way', href: '#' },
-            ],
-          },
-        ],
-      },
-    ],
+  categories: [
+    {
+      id: 'publicidad',
+      name: 'Productos y Servicios',
+      featured: [
+        {
+          name: 'Novedades',
+          href: '#',
+          imageSrc: 'src/assets/img/logo-h-b.svg',
+          imageAlt: 'Una imagen atractiva de una campaña publicitaria reciente.',
+        },
+        {
+          name: 'Campañas Destacadas',
+          href: '#',
+          imageSrc: 'src/assets/img/logo-h-b.svg',
+          imageAlt: 'Un collage de campañas publicitarias exitosas.',
+        },
+      ],
+      sections: [
+        {
+          id: 'avisos-publicitarios',
+          name: 'Avisos Publicitarios',
+          items: [
+            { name: 'Diseño de Avisos', href: '#' },
+            { name: 'Impresión de Avisos', href: '#' },
+            { name: 'Publicidad en Redes Sociales', href: '#' },
+            { name: 'Ver Todo', href: '#' },
+          ],
+        },
+        {
+          id: 'vallas-y-rotulos',
+          name: 'Vallas y Rótulos',
+          items: [
+            { name: 'Vallas Publicitarias', href: '#' },
+            { name: 'Rótulos Luminosos', href: '#' },
+            { name: 'Señalización', href: '#' },
+          ],
+        },
+        {
+          id: 'impresion-digital',
+          name: 'Impresión Digital',
+          items: [
+            { name: 'Tarjetas de Presentación', href: '#' },
+            { name: 'Folletos y Volantes', href: '#' },
+            { name: 'Etiquetas Adhesivas', href: '#' },
+            { name: 'Papelería Corporativa', href: '#' },
+          ],
+        },
+        {
+          id: 'servicios',
+          name: 'Servicios Adicionales',
+          items: [
+            { name: 'Diseño Gráfico', href: '#' },
+            { name: 'Corte Láser', href: '#' },
+            { name: 'Montaje y Colocación', href: '#' },
+            { name: 'Personalización de Productos', href: '#' },
+          ],
+        },
+      ],
+    },
+  ],
+
+
     pages: [
-      { name: 'Company', href: '#' },
-      { name: 'Stores', href: '#' },
+      { name: 'Nosotros', href: '#Valores' },
+      { name: 'Contacto', href: '#Contacto' },
     ],
   }
   
@@ -163,7 +96,7 @@
     <div class="bg-white">
       <!-- Mobile menu -->
       <TransitionRoot as="template" :show="open">
-        <Dialog class="relative z-40 lg:hidden" @close="open = false">
+        <Dialog class="relative z-30 lg:hidden" @close="open = false">
           <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
             <div class="fixed inset-0 bg-black bg-opacity-25" />
           </TransitionChild>
@@ -184,7 +117,7 @@
                   <div class="border-b border-gray-200">
                     <TabList class="-mb-px flex space-x-8 px-4">
                       <Tab as="template" v-for="category in navigation.categories" :key="category.name" v-slot="{ selected }">
-                        <button :class="[selected ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-900', 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium']">{{ category.name }}</button>
+                        <button :class="[selected ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-900', 'flex-1 whitespace-nowrap border-b-2 px-1 py-4 text-base font-medium']">{{ category.name }}</button>
                       </Tab>
                     </TabList>
                   </div>
@@ -196,7 +129,7 @@
                             <img :src="item.imageSrc" :alt="item.imageAlt" class="object-cover object-center" />
                           </div>
                           <a :href="item.href" class="mt-6 block font-medium text-gray-900">
-                            <span class="absolute inset-0 z-10" aria-hidden="true" />
+                            <span class="absolute inset-0 z-40" aria-hidden="true" />
                             {{ item.name }}
                           </a>
                           <p aria-hidden="true" class="mt-1">Shop now</p>
@@ -238,7 +171,7 @@
       </TransitionRoot>
   
       <header class="relative bg-white">
-        <p class="flex h-10 items-center justify-center bg-indigo-600 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">Get free delivery on orders over $100</p>
+        <p class="flex h-10 items-center justify-center bg-blue-500 px-4 text-sm font-medium text-white sm:px-6 lg:px-8">| Bienvenido a Miros Publicidad: +57 312 454 7484 |  </p>
   
         <nav aria-label="Top" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div class="border-b border-gray-200">
@@ -252,8 +185,8 @@
               <!-- Logo -->
               <div class="ml-4 flex lg:ml-0">
                 <a href="#">
-                  <span class="sr-only">Your Company</span>
-                  <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" />
+                  <span class="sr-only">Miros Publicidad</span>
+                  <img class="h-8 w-auto" src="../assets/img/logo-h-b.svg" alt="" />  
                 </a>
               </div>
   
@@ -262,7 +195,7 @@
                 <div class="flex h-full space-x-8">
                   <Popover v-for="category in navigation.categories" :key="category.name" class="flex" v-slot="{ open }">
                     <div class="relative flex">
-                      <PopoverButton :class="[open ? 'border-indigo-600 text-indigo-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out']">{{ category.name }}</PopoverButton>
+                      <PopoverButton :class="[open ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-700 hover:text-gray-800', 'relative z-50 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out']">{{ category.name }}</PopoverButton>
                     </div>
   
                     <transition enter-active-class="transition ease-out duration-200" enter-from-class="opacity-0" enter-to-class="opacity-100" leave-active-class="transition ease-in duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
@@ -279,7 +212,7 @@
                                     <img :src="item.imageSrc" :alt="item.imageAlt" class="object-cover object-center" />
                                   </div>
                                   <a :href="item.href" class="mt-6 block font-medium text-gray-900">
-                                    <span class="absolute inset-0 z-10" aria-hidden="true" />
+                                    <span class="absolute inset-0 z-50" aria-hidden="true" />
                                     {{ item.name }}
                                   </a>
                                   <p aria-hidden="true" class="mt-1">Shop now</p>

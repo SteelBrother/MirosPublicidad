@@ -1,5 +1,10 @@
 <script setup>
 import MainNav from '@/components/MainNav.vue';
+import Header from '@/components/Header.vue';
+import Valores from '@/components/Valores.vue';
+import Datos from '@/components/Datos.vue';
+import Contacto from '@/components/Contacto.vue';
+import Footer from '@/components/Footer.vue';
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import { useProductsStore } from '@/stores/products';
 
@@ -42,18 +47,20 @@ onUnmounted(() => {
 </script>
 
 <template>
+   <MainNav />
+   <Header/>
   <div>
     <!-- Navegación principal -->
-    <MainNav />
+   
 
     <!-- Carrusel para pantallas grandes -->
-    <div class="hidden lg:block bg-white">
-      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
+    <div class="hidden lg:block bg-white" >
+      <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8" id="Productos">
         <h2 class="text-2xl font-bold tracking-tight text-gray-900">Nuestros productos</h2>
 
         <!-- Grid de productos con transición suave (pantallas grandes) -->
-        <div class="relative overflow-hidden">
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 transition-transform duration-500 ease-in transform"
+        <div class="relative overflow-hidden ">
+    <div class="grid  grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8 transition-transform duration-500 ease-in transform"
          :style="{ transform: `translateX(-${currentIndex.value * 100}%)` }">
         <RouterLink
           v-for="product in visibleProducts"
@@ -61,7 +68,7 @@ onUnmounted(() => {
           :to="{ name: 'product', params: { id: product.id } }"
         >
           <div class="group relative">
-            <div class="aspect-h-1 aspect-w-1 w-full h-72 overflow-hidden rounded-md bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
+            <div class="aspect-h-1 aspect-w-1 w-full h-72 overflow-hidden rounded-md mt-8 bg-gray-200 lg:aspect-none group-hover:opacity-75 lg:h-80">
               <img :src="product.image" :alt="product.imageAlt" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
             </div>
             <div class="mt-4 flex justify-between">
@@ -107,4 +114,14 @@ onUnmounted(() => {
       </div>
     </div>
   </div>
+
+ <div id="Valores"> 
+  <Valores/>
+  </div>
+  <Datos/>
+
+  <div id="Contacto">
+  <Contacto/>
+</div>
+  
 </template>

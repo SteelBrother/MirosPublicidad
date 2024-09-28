@@ -42,7 +42,7 @@ const submitHandler = async data => {
 <template>
   <div>
     <Link to="products">Volver</Link>
-    <h1 class="text-4xl font-black my-10">Nuevo Producto</h1>
+    <h1 class="text-4xl font-black my-10 ">Nuevo Producto</h1>
 
     <div class="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-md">
       <h2 class="text-lg font-semibold leading-7 text-gray-900 mb-6">Registrar Producto</h2>
@@ -65,8 +65,8 @@ Eliminar Imagen</button>
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
                   </svg>
                   <div class="mt-4 flex text-sm text-gray-600">
-                      <label for="product-images" class="relative cursor-pointer rounded-md bg-white font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2">
-                          <span>Subir imágenes</span>
+                      <label for="product-images" class="relative cursor-pointer rounded-md bg-white font-medium text-blue-600 hover:text-blue-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2">
+                          <span>Subir imágen</span>
                           <input id="product-images" 
                                 @change="onFileChange" 
                                 name="product-images" 
@@ -75,9 +75,9 @@ Eliminar Imagen</button>
                                 accept=".jpg,.jpeg,.png" 
                                 multiple>
                       </label>
-                      <p class="pl-1">o arrastra los archivos aquí</p>
+                      <p class="pl-1">o arrastra el archivo aquí</p>
                   </div>
-                  <p class="mt-2 text-xs text-gray-500">Hasta 5 imágenes</p>
+                  
                   <p v-if="!formData.image && imageRequiredError" class="text-red-500 text-sm">La Imagen del Producto es obligatoria</p>
               </template>
           </div>
