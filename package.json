@@ -12,6 +12,7 @@
     "@headlessui/vue": "^1.7.23",
     "@heroicons/vue": "^2.1.5",
     "firebase": "^10.13.2",
+    "heroicons": "^2.1.5",
     "pinia": "^2.1.7",
     "uid": "^2.0.2",
     "vee-validate": "^4.13.2",

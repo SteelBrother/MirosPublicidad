@@ -1,9 +1,11 @@
 import './assets/main.css'
 
-import { VueFire, VueFireAuth } from 'vuefire'
-import { firebaseApp } from './config/firebase'
+
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
+
+import { VueFire, VueFireAuth } from 'vuefire'
+import { firebaseApp } from './config/firebase'
 
 import App from './App.vue'
 import router from './router'
@@ -15,6 +17,7 @@ app.use(VueFire, {
     modules: [VueFireAuth()],
   })
 app.use(createPinia())
+
 app.use(router)
 
 app.mount('#app')

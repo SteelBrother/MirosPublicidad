@@ -1,18 +1,23 @@
 <script setup>
-    import { RouterLink } from 'vue-router'
+    import {RouterLink} from 'vue-router'
 
     defineProps({
-        to: {
+        to:{
             type: String
         }
     })
+
 </script>
 
 <template>
-   <RouterLink
-        v-if="to"
-        :to="to"
-   >
+    <RouterLink
+        :to="{name: to}"
+        class="rounded bg-blue-400 hover:bg-blue-500 font-bold py-2 px-10"
+    >
         <slot></slot>
-   </RouterLink>
+
+    </RouterLink>
+
+    
 </template>
+

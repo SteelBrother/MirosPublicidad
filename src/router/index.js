@@ -5,6 +5,7 @@ import AdminLayout from '@/views/admin/AdminLayout.vue'
 import { useFirebaseAuth } from 'vuefire'
 import { onAuthStateChanged } from 'firebase/auth'
 import LoginView from '@/views/LoginView.vue'
+import ProductView from '@/views/ProductView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,6 +19,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/product/:id',
+      name: 'product',
+      component: ProductView
     },
     {
       path: '/admin',
@@ -36,9 +42,24 @@ const router = createRouter({
           component: () => import('../views/admin/NewProductView.vue')
         },
         {
+          path: 'categorias',
+          name: 'category',
+          component: () => import('../views/admin/AdminCategoriesView.vue')
+        },
+        {
+          path: 'categorias/editar/:id', 
+          name: 'edit-category', 
+          component: () => import('../views/admin/AdminEditCategoryView.vue') // Asegúrate de que el componente esté en la ruta correcta
+        },
+        {
           path: 'configuracion',
           name: 'config',
           component: () => import('../views/admin/AdminConfigView.vue')
+        },
+        {
+          path: 'productos/editar/:id',
+          name: 'edit-product',
+          component: () => import('../views/admin/EditProductView.vue')
         }
       ]
     }
