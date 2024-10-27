@@ -23,13 +23,28 @@ export const useProductsStore = defineStore('products', () => {
     await addDoc(collection(db, 'products'), product);
   }
 
-
+  // Función para cargar productos
+  const loadProducts = async () => {
+    const q = collection(db, 'products');
+    const snapshot = await getDocs(q);
+    productsCollection.value = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  };
   async function updateProduct(docRef, product) {
-    const { image, url, ...values} = product
+        // Imprimir todo el objeto `product`
+      console.log("Producto recibido:", product);
+
+      // Extraer las propiedades `image`, `url`, y el resto de `product`
+      const { image, url, ...values } = product;
+
+      // Verificar si las propiedades `image` y `url` están llegando correctamente
+      console.log("Imagen recibida:", image);
+      console.log("URL recibida:", url);
+      console.log("Otros valores recibidos:", values);
     if(image.length) {
+        console.log("por aqui")
         await updateDoc(docRef, {
             ...values,
-            image: url.value
+            image: image
         })
     } else {
         await updateDoc(docRef, values)

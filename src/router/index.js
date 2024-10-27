@@ -42,6 +42,16 @@ const router = createRouter({
           component: () => import('../views/admin/NewProductView.vue')
         },
         {
+          path: 'categorias',
+          name: 'category',
+          component: () => import('../views/admin/AdminCategoriesView.vue')
+        },
+        {
+          path: 'categorias/editar/:id', 
+          name: 'edit-category', 
+          component: () => import('../views/admin/AdminEditCategoryView.vue') // Asegúrate de que el componente esté en la ruta correcta
+        },
+        {
           path: 'configuracion',
           name: 'config',
           component: () => import('../views/admin/AdminConfigView.vue')

@@ -88,7 +88,7 @@ onUnmounted(() => {
     <!-- Mostrar productos en pantallas pequeñas -->
     <div class="block lg:hidden bg-white">
       <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
-        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Algunos de nuestros productos</h2>
 
         <!-- Grid de productos (pantallas pequeñas) -->
         <div class="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
@@ -122,6 +122,7 @@ onUnmounted(() => {
 
   <div id="Contacto">
   <Contacto/>
-</div>
+  </div>
+  
   
 </template>

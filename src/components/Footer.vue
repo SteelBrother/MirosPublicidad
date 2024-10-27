@@ -9,13 +9,7 @@
             <div
                 class="tw-flex tw-h-full tw-w-[250px] tw-flex-col tw-place-items-center tw-gap-6 max-md:tw-w-full"
             >
-                <img
-                    src="./assets/logo/logo-h-b.svg"
-                    alt="logo"
-                    srcset=""
-                    class="tw-max-w-[120px]"
-                    href="#hero-section"
-                />
+                
                 
             </div>
             <div class="tw-flex tw-h-full tw-w-[250px] tw-flex-col tw-gap-4">
