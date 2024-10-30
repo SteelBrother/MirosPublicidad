@@ -6,6 +6,7 @@ import { useFirebaseAuth } from 'vuefire'
 import { onAuthStateChanged } from 'firebase/auth'
 import LoginView from '@/views/LoginView.vue'
 import ProductView from '@/views/ProductView.vue'
+import ProductListView from '@/views/ProductListView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/login',
       name: 'login',
       component: LoginView
+    },
+    {
+      path: '/productos',  // La ruta de acceso para la vista de productos
+      name: 'ProductList',
+      component: ProductListView,
     },
     {
       path: '/product/:id',

@@ -116,16 +116,28 @@ const removeImage = () => {
 
 const submitHandler = async data => {
   const { image, ...values } = data;
+
+  console.log('formData.category:', formData.category); // Para depurar el valor de category
+
+  // Asegúrate de que categoryId tenga un valor válido
+  if (!formData.category) {
+    console.error('categoryId no está definido');
+    return; // Detenemos la ejecución si categoryId es undefined
+  }
+
   try {
     await products.createProduct({
       ...values,
       image: url.value
-    });
+    }, formData.category); // Pasa formData.category como segundo argumento
     router.push({ name: 'products' });
   } catch (error) {
     console.log(error);
   }
 };
+
+
+
 
 // Cargar categorías al inicializar el componente
 onMounted(() => {

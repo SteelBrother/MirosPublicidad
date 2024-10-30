@@ -3,83 +3,60 @@
   import { useAuthStore } from '@/stores/auth'
   import { useCategoriesStore } from '@/stores/categories';
   import { useProductsStore } from '@/stores/products';
-  import { ref } from 'vue'
+  import { ref, onMounted,computed } from 'vue'
   import { Dialog, DialogPanel, Popover, PopoverButton, PopoverGroup, PopoverPanel, Tab, TabGroup, TabList, TabPanel, TabPanels, TransitionChild, TransitionRoot } from '@headlessui/vue'
   import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/vue/24/outline'
+
   const open = ref(false)
   const auth = useAuthStore()
   const categoriesStore = useCategoriesStore();
   const productsStore = useProductsStore();
-  
-  const navigation = {
-    categories: [
-      {
-        id: 'publicidad',
-        name: 'Productos y Servicios',
-        featured: [
-          {
-            name: 'Novedades',
-            href: '#',
-            imageSrc: 'src/assets/img/logo-h-b.svg',
-            imageAlt: 'Una imagen atractiva de una campaña publicitaria reciente.',
-          },
-          {
-            name: 'Campañas Destacadas',
-            href: '#',
-            imageSrc: 'src/assets/img/logo-h-b.svg',
-            imageAlt: 'Un collage de campañas publicitarias exitosas.',
-          },
+
+  onMounted(async () => {
+  await categoriesStore.loadCategories(); // Asegúrate de cargar las categorías
+  await productsStore.loadProducts(); // Cargar los productos también
+  });
+
+  const navigation = computed(() => {
+    return {
+        categories: [
+            {
+                id: 'publicidad',
+                name: 'Productos y Servicios',
+                featured: [
+                    {
+                        name: 'Novedades',
+                        href: '#',
+                        imageSrc: 'src/assets/img/logo-h-b.svg',
+                        imageAlt: 'Una imagen atractiva de una campaña publicitaria reciente.',
+                    },
+                    {
+                        name: 'Campañas Destacadas',
+                        href: '#',
+                        imageSrc: 'src/assets/img/logo-h-b.svg',
+                        imageAlt: 'Un collage de campañas publicitarias exitosas.',
+                    },
+                ],
+                sections: categoriesStore.categories.map(category => {
+                    const products = productsStore.getProductsByCategoryId(category.id);
+                    return {
+                        id: category.id,
+                        name: category.name,
+                        items: products.map(product => ({
+                            name: product.name,
+                            href: product.href || '#',
+                        })),
+                        hasMore: products.length > 3,
+                    };
+                }),
+            },
         ],
-        sections: [
-          {
-            id: 'avisos-publicitarios',
-            name: 'Avisos Publicitarios',
-            items: [
-              { name: 'Diseño de Avisos', href: '#' },
-              { name: 'Impresión de Avisos', href: '#' },
-              { name: 'Publicidad en Redes Sociales', href: '#' },
-              { name: 'Ver Todo', href: '#' },
-            ],
-          },
-          {
-            id: 'vallas-y-rotulos',
-            name: 'Vallas y Rótulos',
-            items: [
-              { name: 'Vallas Publicitarias', href: '#' },
-              { name: 'Rótulos Luminosos', href: '#' },
-              { name: 'Señalización', href: '#' },
-            ],
-          },
-          {
-            id: 'impresion-digital',
-            name: 'Impresión Digital',
-            items: [
-              { name: 'Tarjetas de Presentación', href: '#' },
-              { name: 'Folletos y Volantes', href: '#' },
-              { name: 'Etiquetas Adhesivas', href: '#' },
-              { name: 'Papelería Corporativa', href: '#' },
-            ],
-          },
-          {
-            id: 'servicios',
-            name: 'Servicios Adicionales',
-            items: [
-              { name: 'Diseño Gráfico', href: '#' },
-              { name: 'Corte Láser', href: '#' },
-              { name: 'Montaje y Colocación', href: '#' },
-              { name: 'Personalización de Productos', href: '#' },
-            ],
-          },
+        pages: [
+            { name: 'Nosotros', href: '#Valores' },
+            { name: 'Contacto', href: '#Contacto' },
         ],
-      },
-    ],
-    pages: [
-      { name: 'Nosotros', href: '#Valores' },
-      { name: 'Contacto', href: '#Contacto' },
-    ],
-  }
-  
-  
+    };
+});
 </script>
 
 <template>
@@ -131,7 +108,14 @@
                         <li v-for="item in section.items" :key="item.name" class="flow-root">
                           <a :href="item.href" class="-m-2 block p-2 text-gray-500">{{ item.name }}</a>
                         </li>
+                        <!-- Verifica si hay más de 3 productos -->
+                        <li v-if="section.hasMore" class="flow-root">
+                          <RouterLink :to="{ name: 'listaproductos', params: { categoryId: section.id } }" class="-m-2 block p-2 font-medium text-blue-600">
+                            Ver más
+                          </RouterLink>
+                        </li>
                       </ul>
+
                     </div>
                   </TabPanel>
                 </TabPanels>

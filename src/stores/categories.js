@@ -17,17 +17,18 @@ export const useCategoriesStore = defineStore('categories', () => {
 
     // Crear una nueva categoría
     async function createCategory(newCategory) {
-        // Verificar si ya existe una categoría con el mismo nombre
-        const exists = categories.value.some(cat => cat.name.toLowerCase() === newCategory.name.toLowerCase());
-        
-        if (exists) {
-            throw new Error('Ya existe una categoría con ese nombre.');
-        }
-
-        // Agregar la nueva categoría a Firestore
-        const docRef = await addDoc(categoriesCollection, newCategory);
-        categories.value.push({ id: docRef.id, ...newCategory });
+    // Verificar si ya existe una categoría con el mismo nombre
+    const exists = categories.value.some(cat => cat.name.toLowerCase() === newCategory.name.toLowerCase());
+    
+    if (exists) {
+        throw new Error('Ya existe una categoría con ese nombre.');
     }
+
+    // Agregar la nueva categoría a Firestore
+    const docRef = await addDoc(categoriesCollection, newCategory);
+    categories.value.push({ id: docRef.id, ...newCategory });
+}
+
 
     // Actualizar una categoría existente
     async function updateCategory(id, category) {

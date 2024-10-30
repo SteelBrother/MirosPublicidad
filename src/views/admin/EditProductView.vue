@@ -78,9 +78,11 @@ const submitHandler = async () => {
   try {
     const updatedProduct = {
       ...formData,
-      image: url.value || formData.image // Usar la URL de la imagen subida o la existente
+      image: url.value || formData.image, // Usar la URL de la imagen subida o la existente
+      categoryId: formData.category // Asegúrate de incluir el ID de la categoría
     };
     console.log('URL recibida:', url.value); // Para verificar que la URL se está enviando correctamente
+    console.log('Producto actualizado:', updatedProduct); // Para depurar el objeto que se está enviando
     await products.updateProduct(docRef, updatedProduct);
     router.push({ name: 'products' });
   } catch (error) {
